@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/lista.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container__lista">
+        <div class="lista__buttons">
+            <a href="index.html"><button>Voltar para o indice</button></a>
+            <button onclick="getLista()">Mostrar a lista</button>
+        </div>
+        <div class="lista__list">
+            <div id="lista"></div>
+        </div>
+    </div>
+
+    <script>
+        function getLista() {
+        // Use a função fetch para fazer uma requisição à sua API PHP
+        fetch('http://localhost/site/clientes/lista') // Certifique-se de ajustar a URL conforme necessário
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição da API: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Imprime a resposta no console
+                console.log(data);
+
+                // Verifica se há dados retornados pela API
+                if (data && data.Dado && data.Dado.length > 0) {
+                    // Limpa o conteúdo atual da div lista
+                    document.getElementById('lista').innerHTML = "";
+
+                    // Itera sobre os dados e os adiciona à lista
+                    data.Dado.forEach(item => {
+                        // Cria um elemento de lista
+                        var listItem = document.createElement('li');
+                        
+                        // Adiciona o conteúdo à lista (você pode personalizar isso com base em seus dados)
+                        listItem.textContent = item.nome + " - " + item.email + " - " + item.telefone + " - " + item.cidade;
+
+                        // Adiciona o elemento de lista à div lista
+                        document.getElementById('lista').appendChild(listItem);
+                    });
+                } else {
+                    // Se não houver dados, exibe uma mensagem adequada
+                    document.getElementById('lista').innerHTML = "Não há dados disponíveis.";
+                }
+            })
+            .catch(error => console.error('Erro ao obter dados da API:', error));
+    }
+    </script>
+</body>
+</html>

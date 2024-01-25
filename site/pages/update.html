@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/update.css">
+    <title>Atualizar Valores</title>
+</head>
+<body>
+    <div class="container__update">
+        <div class="update__form">
+            <div class="form__title">
+                <h1>Atualizar Valores</h1>
+            </div>
+            <form id="updateForm" action="/site/clientes/update" method="post">
+                <!-- Campo oculto para o método -->
+                <input type="hidden" name="_method" value="PUT">
+
+                <!-- Campo de ID visível -->
+                <div class="form__inputs">
+                    <span>ID do Cliente</span><input type="text" id="clienteId" name="clienteId" required>
+                    <span>Nome</span><input type="text" name="nome">
+                    <span>Email</span><input type="text" name="email">
+                    <span>Telefone</span><input type="text" name="telefone">
+                    <span>Cidade</span><input type="text" name="cidade">
+                    <button type="submit">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("updateForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Obtém o valor do ID do cliente
+            var clienteId = document.getElementById("clienteId").value;
+
+            // Monta a URL com o ID do cliente e redireciona
+            window.location.href = "/site/clientes/update/" + clienteId;
+        });
+    </script>
+</body>
+</html>

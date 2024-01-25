@@ -28,6 +28,8 @@
 
         $sql .= ")";
 
+        var_dump($sql);
+
         $db = DB::connect();
         $rs = $db -> prepare($sql);
         $exec = $rs -> execute();

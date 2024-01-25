@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/deletar.css">
+    <title>Atualizar Valores</title>
+</head>
+<body>
+    <div class="container__deletar">
+        <div class="deletar__form">
+            <div class="form__title">
+                <h1>Deletar Cliente</h1>
+            </div>
+            <form id="deleteForm" method="post" onsubmit="deleteFormSubmit(event)">
+
+                <input type="hidden" name="_method" value="DELETE">
+
+                <div class="form__inputs">
+                    <span>ID do Cliente</span><input type="text" id="clienteId" name="id" required>
+                    <button type="submit">Deletar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function deleteFormSubmit(event) {
+            event.preventDefault();
+
+            var clienteId = document.getElementById('clienteId').value;
+
+            var apiUrl = '/site/clientes/deletar/' + clienteId;
+
+            document.getElementById('deleteForm').action = apiUrl;
+
+            document.getElementById('deleteForm').submit();
+        }
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@ body {
     background-attachment: fixed;
 }
 
-.container__update{
+.container__deletar{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,9 +29,9 @@ button {
     box-shadow: 5px 5px 5px black;
 }
 
-.update__form {
+.deletar__form {
     margin-top: 15px;
-    height: 30rem;
+    height: 15rem;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;

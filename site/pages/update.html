@@ -12,13 +12,13 @@
             <div class="form__title">
                 <h1>Atualizar Valores</h1>
             </div>
-            <form id="updateForm" action="/site/clientes/update" method="post">
+            <form id="updateForm" method="post" onsubmit="updateFormSubmit(event)">
                 <!-- Campo oculto para o método -->
                 <input type="hidden" name="_method" value="PUT">
 
                 <!-- Campo de ID visível -->
                 <div class="form__inputs">
-                    <span>ID do Cliente</span><input type="text" id="clienteId" name="clienteId" required>
+                    <span>ID do Cliente</span><input type="text" id="clienteId" name="id" required>
                     <span>Nome</span><input type="text" name="nome">
                     <span>Email</span><input type="text" name="email">
                     <span>Telefone</span><input type="text" name="telefone">
@@ -30,15 +30,21 @@
     </div>
 
     <script>
-        document.getElementById("updateForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
+        function updateFormSubmit(event) {
+            event.preventDefault();
 
-            // Obtém o valor do ID do cliente
-            var clienteId = document.getElementById("clienteId").value;
+            // Pegar o valor do campo clienteId
+            var clienteId = document.getElementById('clienteId').value;
 
-            // Monta a URL com o ID do cliente e redireciona
-            window.location.href = "/site/clientes/update/" + clienteId;
-        });
+            // Construir a URL com o ID do cliente
+            var apiUrl = '/site/clientes/update/' + clienteId;
+
+            // Atualizar a ação do formulário
+            document.getElementById('updateForm').action = apiUrl;
+
+            // Submeter o formulário
+            document.getElementById('updateForm').submit();
+        }
     </script>
 </body>
 </html>
